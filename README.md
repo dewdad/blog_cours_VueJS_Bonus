@@ -1,6 +1,6 @@
 # blog
 
-> Blog app
+> Blog VueJS rendu Bonus
 
 ## Build Setup
 
