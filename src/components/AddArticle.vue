@@ -64,7 +64,9 @@ export default {
   },
   methods: {
     addArticle () {
+      // Si le form est valide on ajout l'article
       if (this.$refs.formArticle.validate()) {
+        // Utilisation de VuexORM pour insérer dans le store
         Article.insert({ data: { title: this.title, description: this.description, urlimage: this.urlimage, id_user: 1 } }).then(() => {
           this.$root.$emit('article-added')
           this.dialog = false

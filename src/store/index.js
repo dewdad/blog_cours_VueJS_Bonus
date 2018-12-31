@@ -14,6 +14,7 @@ import AxiosRequestConfig from './AxiosRequestConfig'
 import Article from './models/Article'
 import Commentaire from './models/Commentaire'
 import User from './models/User'
+import Evenement from './models/Evenement'
 
 // Create database VuexORM
 const database = new VuexORM.Database()
@@ -22,6 +23,7 @@ const database = new VuexORM.Database()
 database.register(Article)
 database.register(Commentaire)
 database.register(User)
+database.register(Evenement)
 
 // Set VuexORMAxios config
 VuexORM.use(VuexORMAxios, {

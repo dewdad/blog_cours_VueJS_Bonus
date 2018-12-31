@@ -1,7 +1,16 @@
 <template>
-  <div id="navbar">
-    <img src="../assets/apple.jpg">
-  </div>
+  <v-toolbar app  clipped-left dark>
+    <v-toolbar-title>TP VueJS</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-toolbar-items class="hidden-sm-and-down">
+      <router-link tag="v-btn" flat to="/blog">
+        Blog
+      </router-link>
+      <router-link tag="v-btn" flat to="/planing">
+        Planning
+      </router-link>
+    </v-toolbar-items>
+  </v-toolbar>
 </template>
 
 <script>
@@ -11,16 +20,4 @@ export default {
 </script>
 
 <style scoped>
-  #navbar {
-    height: 50px;
-    width: 100%;
-    background: #fff;
-    border-bottom: lightgreen solid 2px;
-    box-shadow: 0px 1px 1px lightgray;
-  }
-
-  img {
-    height: 40px;
-    margin: 5px;
-  }
 </style>

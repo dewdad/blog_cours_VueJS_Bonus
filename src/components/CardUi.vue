@@ -1,10 +1,6 @@
 <template>
     <v-card id="card" class="my-3" hover>
-      <v-img
-        class="white--text"
-        height="170px"
-        :src="article.urlimage"
-      />
+      <v-img class="white--text" height="170px" :src="article.urlimage" />
       <v-card-title primary-title>
         <div>
           <div class="headline">{{ article.title}}</div>
@@ -12,18 +8,46 @@
         </div>
       </v-card-title>
       <v-card-actions>
-        <v-icon color="blue darken-4" medium>forum</v-icon>{{ article.commentaires.length }} commentaires
+        <v-icon color="blue darken-4" medium>forum</v-icon>{{ nbCommentaires }} commentaires
         <v-spacer></v-spacer>
-        <v-btn flat class="blue--text" :to="'/article/' + article.id_article">Lire</v-btn>
+        <v-btn flat class="red--text" v-if="showDelete" @click="deleteArticle(article.id_article)"><v-icon color="red darken-4" medium>delete</v-icon></v-btn>
+        <v-btn flat class="blue--text" :to="'/blog/article/' + article.id_article">Lire</v-btn>
       </v-card-actions>
     </v-card>
 </template>
 
 <script>
+import Commentaire from '../store/models/Commentaire'
+import Article from '../store/models/Article'
 export default {
   name: 'CardUi',
   props: {
     article: Object
+  },
+  data () {
+    return {
+      showDelete: false
+    }
+  },
+  computed: {
+    // Retourne le nombre de commentaire de l'article courant
+    nbCommentaires () {
+      // Utilisation de VuexORM pour récupérer des infos sur les commentaires dans le store
+      return Commentaire.query().where('id_article', this.article.id_article).get().length
+    }
+  },
+  mounted () {
+    // Lorsque qu'un evenement 'show-delete' est émis on le catch ici
+    this.$root.$on('show-delete', () => {
+      this.showDelete = !this.showDelete
+    })
+  },
+  methods: {
+    // Supprime un article
+    deleteArticle (idArticle) {
+      // Utilisation de VuexORM pour supprimer dans le store
+      Article.delete(idArticle)
+    }
   }
 }
 </script>
