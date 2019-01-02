@@ -1,4 +1,4 @@
-// GameModel Model
+// Article Model
 import { Model } from '@vuex-orm/core'
 import Commentaire from './Commentaire'
 import User from '@/store/models/User'

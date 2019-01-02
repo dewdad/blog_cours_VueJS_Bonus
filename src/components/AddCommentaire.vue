@@ -25,7 +25,7 @@
         depressed
         @click="addCommentaire"
       >
-        Post
+        Publier
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -42,6 +42,7 @@ export default {
   },
   methods: {
     addCommentaire () {
+      // Utilisation de VuexORM pour insérer dans le store
       Commentaire.insert({data: { id_article: parseInt(this.$route.params.id), content: this.commentaire, id_user: 1 }}).then(() => {
         this.$root.$emit('commentaire-added')
       })
